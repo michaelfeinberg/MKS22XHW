@@ -14,7 +14,11 @@ public class Board{
     public String printRow(int row){
 	String ans = "";
 	for(int j = 0;j<board.length;j++){
-	    ans += board[row][j]+"";
+	    if(board[row][j]==1){
+		ans += "Q ";
+	    }else{
+		ans += "_ ";
+	    }
 	}
 	return ans + "\n";
     }
@@ -22,31 +26,38 @@ public class Board{
 	board = new int[board.length][board.length];
     }
     public boolean solve(){
-	return solveHelp(0,0);
+	return solveHelp(0);
     }
-    public boolean solveHelp(int startCol,int startRow){
-        if(startCol==board.length-1){
-	    return(findFirstSpace(startCol,startRow)>0);
-	    
-	}else if(findFirstSpace(startCol,startRow)==-1){
-	    return false;
-	}else{ 
-	    addQueen(startCol,findFirstSpace(startCol,startRow));
-	    if( solveHelp(startCol+1,0) ){
+    public boolean solveHelp(int col){
+	if(col==board.length-1){
+	    if(isSpace(col)){
 		return true;
-	    }else{
-		remQueen(startCol,findFirstSpace(startCol,startRow));
-		return solveHelp(startCol,findFirstSpace(startCol,findFirstSpace(startCol,startRow)));
 	    }
+	    return false;
+	}else if(!isSpace(col)){
+	    return false;
+	    
+	}else{
+	    for(int j = 0;j<board.length;j++){
+		if(board[j][col]==0){
+		    addQueen(j,col);
+		    if(solveHelp(col+1)){
+			return true;
+		    }else{
+			remQueen(j,col);
+		    }
+		}
+	    }
+	    return false;
 	}
     }
-    public int findFirstSpace(int col,int startRow){
-	for(int x = startRow+1;x<board.length;x++){
-	    if(board[col][x]==0){
-		return x;
+    public boolean isSpace(int col){
+	for(int x = 0;x<board.length;x++){
+	    if(board[x][col]==0){
+		return true;
 	    }
 	}
-	return -1;
+	return false;
     }
     public void addQueen(int row,int col){
 	board[row][col] = 1;
@@ -59,7 +70,7 @@ public class Board{
 	}
 	r = row-1;
 	for(int c = col+1;c<board.length;c++){
-	    if(r>0){
+	    if(r>=0){
 		board[r][c]-=1;
 		r--;
 	    }    
@@ -81,7 +92,7 @@ public class Board{
 	    }
 	    r = row -1;
 	    for(int c = col+1;c<board.length;c++){
-		if(r>0){
+		if(r>=0){
 		    board[r][c]+=1;
 		    r--;
 		}
@@ -93,19 +104,17 @@ public class Board{
 	}
     }
     public static void main(String[]args){
-	Board b = new Board(4);
-	b.addQueen(0,0);
-	System.out.println(b);
-	b.remQueen(0,0);
-	System.out.println(b);
-	System.out.println(b.solve());
+	Board b = new Board(Integer.parseInt(args[0]));
 	Board b2 = new Board(2);
 	Board b3 = new Board(3);
 	Board b8 = new Board(8);
-	System.out.println(b2.solve());
-	System.out.println(b3.solve());
-	System.out.println(b8.solve());
-	System.out.println(b2);
-	System.out.println(b3);
+
+	//System.out.println(b2.solve());
+	//System.out.println(b3.solve());
+	//System.out.println(b8.solve());
+	//System.out.println(b2);
+	//System.out.println(b8);
+	System.out.println(b.solve());
+	System.out.println(b);
     }
 }
