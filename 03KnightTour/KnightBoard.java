@@ -10,7 +10,7 @@ public class KnightBoard{
 	board = new int[row][col];
 	x = 0;
     }
-    public boolean ClosedSolve(){
+    public boolean closedSolve(){
 	return ClosedSolveHelp(1,0,0);
     }
     public boolean ClosedSolveHelp(int count,int row,int col){
