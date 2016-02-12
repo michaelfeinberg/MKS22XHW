@@ -7,15 +7,31 @@ public class KnightBoard{
 	return solveHelp(1,0,0);
     }
     public boolean solveHelp(int count,int row,int col){
+	//try{
+	//  Thread.sleep(1000);
+        //}catch(InterruptedException a){
+	//}
+	
+        if(row>=board.length||row<0||col>=board.length||col<0){
+	    //   System.out.println("False 1");
+	    return false;
+	}
+	for(int i = 0;i<board.length;i++){
+	    for(int j = 0;j<board.length;j++){
+		if(board[i][j]>=count){
+		    board[i][j]=0;
+		}
+	    }
+	}
 	if(count == board.length*board.length+1){
 	    if(board[row][col]== 1){
 		return true;
 	    }else{
+		//System.out.println("False 2");
 		return false;
 	    }
-	}else if(row>=board.length||row<0||col>=board.length||col<0){
-	    return false;
-	}else if(board[row][col]>0){
+    	}else if(board[row][col]>0/*&&board[row][col]!=count-1*/){
+	    //System.out.println("False 3");
 	    return false;
 	}else{
 	    board[row][col]=count;
