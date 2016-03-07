@@ -59,27 +59,31 @@ public class Sorts{
 	    return data;
 	}else{
 	    int a = data.length/2;
-	    System.out.println(a);
+	    //System.out.println(a);
 	    int[] data1 = new int[a];
 	    for(int x = 0;x<a;x++){
 		data1[x]=data[x];
 	    }
 	    //Sorts.printArray(data1);
-	    int[] data2 = new int[a+1];
+	    int[] data2;
+	    if(data.length % 2 == 1){
+		data2 = new int[a+1];
+	    }else{
+		data2 = new int[a];
+	    }
 	    for(int i = a;i<data.length;i++){
 		data2[i-a]=data[i];
 	    }
 	    //Sorts.printArray(data2);
-	    //Sorts.printArray(merge(mergeSort(data1),mergeSort(data2)));
 	    return merge(mergeSort(data1),mergeSort(data2));
 	}
     }
     public static int[] merge(int[] data1,int[] data2){
 	int next1 = 0;
 	int next2 = 0;
-	//System.out.println(data1.length);
-	int[] data = new int[2*data1.length];
-	//System.out.println(data.length);
+	int[] data = new int[data1.length+data2.length];
+	Sorts.printArray(data1);
+	Sorts.printArray(data2);
 	while(next1+next2<data.length){
 	    if(data1.length<=next1){
 		data[next1+next2]=data2[next2];
@@ -88,7 +92,6 @@ public class Sorts{
 		data[next1+next2]=data1[next1];
 		next1++;
 	    }else{
-		//System.out.println("Choose");
 		if(data1[next1]>data2[next2]){
 		    data[next1+next2]=data2[next2];
 		    next2++;
@@ -97,7 +100,6 @@ public class Sorts{
 		    next1++;
 		}
 	    }
-	    //Sorts.printArray(data);
 	}
 	return data;
     }
@@ -110,7 +112,12 @@ public class Sorts{
 	Sorts.insertionSort(b);
 	Sorts.printArray(b);
 	*/
-	Sorts.printArray(a);
-	Sorts.printArray(Sorts.mergeSort(a));
+	Sorts.printArray(b);
+	int[] c = {3,5,6};
+	int[] d = {1,2,7,8};
+	//Sorts.printArray(a);
+	//Sorts.printArray(mergeSort(a));
+	Sorts.printArray(mergeSort(b));
+	
     }
 }
