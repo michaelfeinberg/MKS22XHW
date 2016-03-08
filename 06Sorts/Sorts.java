@@ -1,4 +1,7 @@
 public class Sorts{
+    public static String name(){
+	return "7,Feinberg,Michael";
+    }
     public static void printArray(int[] ary){
 	String retString = "{";
 	for(int x = 0;x<ary.length-1;x++){
@@ -82,8 +85,8 @@ public class Sorts{
 	int next1 = 0;
 	int next2 = 0;
 	int[] data = new int[data1.length+data2.length];
-	Sorts.printArray(data1);
-	Sorts.printArray(data2);
+	//Sorts.printArray(data1);
+	//Sorts.printArray(data2);
 	while(next1+next2<data.length){
 	    if(data1.length<=next1){
 		data[next1+next2]=data2[next2];
