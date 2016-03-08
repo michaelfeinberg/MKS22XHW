@@ -57,17 +57,15 @@ public class Sorts{
 	}while(x<data.length-1);
 	return data;
     }
-    public static int[] mergeSort(int[] data){
+    public static int[] mergesort(int[] data){
 	if(data.length == 1){
 	    return data;
 	}else{
 	    int a = data.length/2;
-	    //System.out.println(a);
 	    int[] data1 = new int[a];
 	    for(int x = 0;x<a;x++){
 		data1[x]=data[x];
 	    }
-	    //Sorts.printArray(data1);
 	    int[] data2;
 	    if(data.length % 2 == 1){
 		data2 = new int[a+1];
@@ -77,7 +75,6 @@ public class Sorts{
 	    for(int i = a;i<data.length;i++){
 		data2[i-a]=data[i];
 	    }
-	    //Sorts.printArray(data2);
 	    return merge(mergeSort(data1),mergeSort(data2));
 	}
     }
