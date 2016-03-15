@@ -61,6 +61,9 @@ public class Quick{
 	data[index1] = data[index2];
 	data[index2] = holder;
     }
+    public static String name(){
+	return "7,Feinberg,Michael";
+    }
     public static void main(String[] args){
 	
 	int[] ary = new int[30];
@@ -69,4 +72,5 @@ public class Quick{
 	}
 	
     }
+    
 }
