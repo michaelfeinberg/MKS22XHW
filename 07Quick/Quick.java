@@ -2,26 +2,30 @@ import java.util.*;
 import java.io.*;
 public class Quick{
     public static int partition(int[]data,int left,int right){
-	int index = left + (int)Math.random()*(right-left);
+	int index = left + (int)(Math.random()*(right-left));
+	//System.out.println(index);
 	swap(data,index,right);
 	int start = left;
 	int end = right - 1;
 	while(start < end){
-	    if(data[start] > data[right]){
+	    //System.out.println(start + " " + end);
+	    if(data[start] >= data[right]){
 		swap(data,start,end);
 		end--;
 	    }else{
 		start++;
 	    }
 	}
+	//System.out.println(right+ " " + start+" " +end);
 	if(data[right]<data[start]){
+	    //System.out.println(start);
 	    swap(data,start,right);
 	    return start;
 	}else{
+	    //System.out.println(start);
 	    swap(data,start+1,right);
 	    return start + 1;
 	}
-	
     }
     public static int quickselect(int[]data,int k){
 	return quickselect(data,k,0,data.length-1);
@@ -35,19 +39,21 @@ public class Quick{
 	    return data[k];
 	}
 	if(k < place){
-	    return quickselect(data,k,left,place);
+	    return quickselect(data,k,left,place-1);
 	}else{
-	    return quickselect(data,k,right,place);
+	    return quickselect(data,k,place+1,right);
 	}
     }
     public static void quicksort(int[]data){
-	quicksort(data,0,data.length);
+	quicksort(data,0,data.length-1);
     }
     public static void quicksort(int[]data,int left,int right){
-	if(left!=right){
+	if(left!=right&&left<right){
 	    int place = partition(data,left,right);
-	    quicksort(data,left,place);
-	    quicksort(data,place,right);
+	    if (place < data.length-1){
+		quicksort(data,left,place-1);
+		quicksort(data,place+1,right);
+	    }
 	}
     }
     public static void swap(int[] data, int index1, int index2){
@@ -56,22 +62,11 @@ public class Quick{
 	data[index2] = holder;
     }
     public static void main(String[] args){
-	/*
-	  int[] ary = new int[4000000];
-	  for(int i = 0;i<ary.length;i++){
-	  ary[i] = (int)Math.random()*4;
-	  }
-	*/
-	int[] a = new int[5];
-	a[0] = 10;
-	a[1] = 5;
-	a[2] = 35;
-	a[3] = 17;
-	a[4] = 3;
-	System.out.println(quickselect(a,3));
-	quicksort(a);
-	for(int x = 0;x < a.length;x++){
-	    System.out.println(a[x]);
+	
+	int[] ary = new int[30];
+	for(int i = 0;i<ary.length;i++){
+	    ary[i] = (int)(Math.random()*100);
 	}
+	
     }
 }
