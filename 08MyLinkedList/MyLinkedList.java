@@ -1,17 +1,17 @@
-public class MyLinkedList{
+public class MyLinkedList<T>{
     private class LNode{
-	private int value;
+	private T value;
 	private LNode next;
-	public LNode(int val){
+	public LNode(T val){
 	    value = val;
 	}
-	public void setValue(int Value){
+	public void setValue(T Value){
 	    value = Value;
 	}
 	public void setNext(LNode Next){
 	    next = Next;
 	}
-	public int getValue(){
+	public T getValue(){
 	    return value;
 	}
 	public LNode getNext(){
@@ -21,7 +21,7 @@ public class MyLinkedList{
     public LNode head;
     public LNode tail;
     public int size;
-    public boolean add(int value){
+    public boolean add(T value){
 	if(head==null){
 	    head = new LNode(value);
 	    tail = head;
@@ -42,18 +42,18 @@ public class MyLinkedList{
 	size++;
 	return true;
     }
-    public int set(int index,int newValue){
+    public T set(int index,T newValue){
 	LNode place = head;
 	int x = index;
 	while(x>0){
 	    place = place.getNext();
 	    x--;
 	}
-	int ans = place.getValue();
+	T ans = place.getValue();
 	place.setValue(newValue);
 	return ans;
     }
-    public int get(int index){
+    public T get(int index){
 	LNode place = head;
 	int x = index;
 	while(x>0){
@@ -62,7 +62,7 @@ public class MyLinkedList{
 	}
 	return place.getValue();
     }
-    public boolean add(int index,int value){
+    public boolean add(int index,T value){
 	LNode place = head;
 	int x = index;
 	while(x>1){
@@ -76,7 +76,7 @@ public class MyLinkedList{
 	size++;
 	return true;
     }
-    public int remove(int index){
+    public T remove(int index){
 	LNode place = head;
 	int x = index;
 	while(x>1){
@@ -88,7 +88,7 @@ public class MyLinkedList{
 	size--;
 	return ToBeRemoved.getValue();
     }
-    public int indexOf(int value){
+    public int indexOf(T value){
 	LNode place = head;
 	int index = 0;
 	while(place.getNext()!=null){
@@ -121,10 +121,10 @@ public class MyLinkedList{
 	return size;
     }
     public static void main(String[] args){
-	MyLinkedList m = new MyLinkedList();
-	m.add(3);
-	m.add(2);
-	m.add(1,7);
+	MyLinkedList<Integer> m = new MyLinkedList<Integer>();
+	m.add(new Integer(3));
+	m.add(new Integer(2));
+	m.add(1,new Integer(7));
 	System.out.println(m.get(1));
 	System.out.println(m);
 	System.out.println(m.get(1));
