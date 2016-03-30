@@ -4,6 +4,9 @@ public class MyStack<T>{
     public void push(T item){
 	items.add(0,item);
     }
+    public MyStack(){
+	items = new MyLinkedList<T>();
+    }
     public T pop(){
 	if(isEmpty()){
 	    throw(new NoSuchElementException());
