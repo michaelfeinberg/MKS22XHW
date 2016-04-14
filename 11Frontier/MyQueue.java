@@ -1,9 +1,10 @@
 import java.util.*;
+
 public class MyQueue<T>{
     public MyLinkedList<T> items;
-       /*public MyQueue(T item){
+    public MyQueue(){
 	items = new MyLinkedList<T>();
-	}*/
+    }
     public void enqueue(T item){
 	items.add(item);
     }
@@ -25,7 +26,15 @@ public class MyQueue<T>{
 	return items.size();
     }
     public boolean isEmpty(){
-	return items.size()==0;
+	return  size()==0;
+    }
+    public static void main(String[]args){
+	MyQueue<String> q = new MyQueue<String>();
+	System.out.println(q.isEmpty() + " " + q.size());
+	q.enqueue("FUCK");
+	System.out.println(q.isEmpty() + " " + q.size());
+	q.dequeue();
+	System.out.println(q.isEmpty() + " " + q.size());
     }
 }
 
